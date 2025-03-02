@@ -1,11 +1,10 @@
-import { Menu } from "@mui/icons-material";
 import { Box, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { fetchHoroscope } from "./Api";
 import BottomNav from "./components/Navbar";
 
 export default function App() {
-  const [sign, setSign] = useState("aries"); // Standardstjärntecken
+  const [sign, setSign] = useState("aries");
   const [horoscope, setHoroscope] = useState<string | null>(null);
 
   useEffect(() => {
@@ -16,12 +15,18 @@ export default function App() {
       }
     }
     getHoroscope();
-  }, [sign]); // Körs varje gång 'sign' ändras
+  }, [sign]);
 
   return (
-    <Box sx={{ pb: 8 }}>
-      {" "}
-      {/* Skapar utrymme för navbaren längst ned */}
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+        pb: "64px",
+        overflow: "hidden",
+      }}
+    >
       {/* HEADER */}
       <Box
         component="header"
@@ -33,10 +38,10 @@ export default function App() {
         }}
       >
         <Typography variant="h1">Horoskop</Typography>
-        <Menu />
       </Box>
+
       {/* MAIN CONTENT */}
-      <Box component="main" sx={{ mt: 4, px: 2 }}>
+      <Box component="main" sx={{ flexGrow: 1, overflowY: "auto", px: 2 }}>
         <TextField
           label="Stjärntecken"
           variant="outlined"
@@ -50,7 +55,8 @@ export default function App() {
         </Typography>
         <Typography>{horoscope || "Laddar..."}</Typography>
       </Box>
-      {/* BOTTOM NAVIGATION */}
+
+      {/* FIXAD NAVBAR */}
       <BottomNav />
     </Box>
   );

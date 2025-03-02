@@ -12,6 +12,7 @@ export default function BottomNav() {
         bottom: 0,
         left: 0,
         right: 0,
+        width: "100%",
         zIndex: 1000,
       }}
       elevation={3}
@@ -20,6 +21,10 @@ export default function BottomNav() {
         showLabels
         value={value}
         onChange={(_, newValue) => setValue(newValue)}
+        sx={{
+          height: "64px",
+          backgroundColor: "background.paper",
+        }}
       >
         <BottomNavigationAction label="Home" icon={<Home />} />
         <BottomNavigationAction label="Search" icon={<Search />} />
